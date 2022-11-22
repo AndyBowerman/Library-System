@@ -11,10 +11,6 @@ public class User {
         this.name = name;
     }
 
-    public String name() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -33,5 +29,9 @@ public class User {
 
     public void loanBook(Book book) {
         booksOnLoan.add(book);
+    }
+
+    public void returnBook(Book book) {
+        booksOnLoan.remove(book);
     }
 }
