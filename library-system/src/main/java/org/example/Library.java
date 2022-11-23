@@ -117,6 +117,7 @@ public class Library {
                 currentUser.get(0).loanBook(currentBook.get(0));
                 inStock.remove(inStock.indexOf(currentBook.get(0)));
                 System.out.println(currentUser.get(0).getName() + " has loaned " + currentBook.get(0).getTitle());
+                currentBook.get(0).incrementTimesLoaned();
             } else {
                 System.out.println("Book out on loan");
             }
@@ -151,6 +152,42 @@ public class Library {
             System.out.println(currentUser.get(0).getBooksOnLoan());
         } else {
             System.out.println("User not found");
+        }
+    }
+
+    // Get number of times a book has been loaned
+    public void getLoanCount(String title) {
+        List<Book> currentBook = findBook(title);
+        if(currentBook.size() == 0) {
+            System.out.println("Book not found");
+        } else {
+            System.out.println(currentBook.get(0).getTimesLoaned());
+        }
+    }
+
+    // Find which user has a book
+    public void searchBookStatus(String title) {
+        List<Book> currentBook = findBook(title);
+
+        if(currentBook.size() == 0) {
+            System.out.println("Book not in library stock");
+        } else {
+            if(inStock.contains(currentBook.get(0))) {
+                System.out.println("Book currently available");
+            } else {
+                for (User u: users) {
+                    if(u.getBooksOnLoan().contains(title)) {
+                        System.out.println("Book loaned to " + u.getName());
+                    }
+                }
+            }
+        }
+    }
+
+    // Report all users and the books they have on loan
+    public void userReport () {
+        for (User u: users) {
+            System.out.println(u.getName() + ": " + u.getBooksOnLoan());
         }
     }
 }

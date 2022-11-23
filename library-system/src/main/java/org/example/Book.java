@@ -7,6 +7,7 @@ public class Book {
     private String genre;
     private String subGenre;
     private String publisher;
+    private int timesLoaned = 0;
 
     public Book(String number, String title, String author, String genre, String subGenre, String publisher) {
         this.number = number;
@@ -63,5 +64,13 @@ public class Book {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
+    }
+
+    public int getTimesLoaned() {
+        return timesLoaned;
+    }
+
+    public void incrementTimesLoaned() {
+        timesLoaned++;
     }
 }
